@@ -1,9 +1,12 @@
 #!/bin/bash
-SCREEN_NAME='make_proxy'
+DIR_ROOT="$(dirname $(readlink -f $0))/"
+
+SCREEN_NAME='erlproxy'
 
 
 fun_start()
 {
+	cd ${DIR_ROOT}
 	fileStart="./start.sh"
     cmdStart="erl -pa deps/*/ebin ebin -config app +K true -s make_proxy start_server"
 
@@ -12,7 +15,7 @@ fun_start()
 ${cmdStart}
 EOF
 	chmod +x ${fileStart}
-	screen -dmSL ${SCREEN_NAME} -t make_proxy.log -s ${fileStart}
+	screen -dmSL ${SCREEN_NAME} -t erlproxy.log -s ${fileStart}
 	sleep 3
 	rm -f ${fileStart}
 }

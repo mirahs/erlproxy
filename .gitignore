@@ -20,3 +20,4 @@ _checkouts/
 # create by mirahs
 .idea
 *.iml
+ebin

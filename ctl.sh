@@ -1,5 +1,9 @@
-#!/bin/bash
+#i!/bin/bash
+export PATH=/usr/local/erlang/bin:${PATH} #开机启动需要设置 erl 命令目录到环境变量
+
+
 DIR_ROOT="$(dirname $(readlink -f $0))/"
+export HOME=${DIR_ROOT} #开机启动需要设置 HOME 环境变量
 
 SCREEN_NAME='erlproxy'
 
@@ -7,7 +11,7 @@ SCREEN_NAME='erlproxy'
 fun_start()
 {
 	cd ${DIR_ROOT}
-	fileStart="./start.sh"
+	fileStart="${DIR_ROOT}start.sh"
     cmdStart="erl -pa deps/*/ebin ebin -config app +K true -s make_proxy start_server"
 
     cat > ${fileStart} <<EOF
